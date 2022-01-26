@@ -6,6 +6,7 @@ import Timer from './pages/Timer'
 import './App.css'
 import { createBrowserHistory } from "history";
 import ReactGA from 'react-ga'
+import Offline from './components/Offline'
 
 const history = createBrowserHistory()
 ReactGA.initialize('UA-000000-01')
@@ -21,7 +22,7 @@ export default class App extends React.Component {
       <Router history={history}>
         <div>
           <header>
-            <Link to="/">Recetas</Link>
+            <Link to="/">Recetas <Offline>Offline!</Offline></Link>
           </header>
 
           <main>
