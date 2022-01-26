@@ -22,6 +22,13 @@ workbox.routing.registerRoute(/^https:\/\/fonts.(?:googleapis|gstatic).com\/(.*)
     plugins: [new workbox.expiration.Plugin({ maxAgeSeconds: 30 * 24 * 60 * 60 })]
   }), 'GET')
 
+workbox.routing.registerRoute(/^https?:\/\/www.themealdb.com\/images\/.*/,
+    new workbox.strategies.CacheFirst({
+      cacheName: 'image-cache',
+      plugins: [new workbox.expiration.Plugin({maxAgeSeconds: 7 * 24 * 60 * 60, maxEntries: 20})
+      ]
+    }))
+
 // default
 workbox.routing.registerRoute(/^https?.*/,
   new workbox.strategies.NetworkFirst(), 'GET')
